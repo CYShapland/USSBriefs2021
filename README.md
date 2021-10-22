@@ -1,5 +1,5 @@
 # USSBriefs2021
-This provides the R code and data to replicate results in "The USS Trustee’s risky strategy" by Neil M Davies, Jackie Grant, Chin Yang Shapland.
+This provides the R code and data to replicate results in "The USS Trustee’s risky strategy" by Neil M Davies, Jackie Grant and Chin Yang Shapland.
 
 ## Description
 

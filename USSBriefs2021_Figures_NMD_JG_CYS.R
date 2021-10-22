@@ -20,9 +20,9 @@ library(readxl)
 ### Read data ###
 
 USS_CashFlows <- read_excel("USS_CashFlows.xlsx", sheet = "QuickCalcs")
-Cashflows<-as.data.frame(USS_CashFlows["Expected cash flows (£bn) in relation to benefits accrued at 31 March 2020"])
+Cashflows<-as.data.frame(USS_CashFlows["Expected cash flows (?bn) in relation to benefits accrued at 31 March 2020"])
 CPI <- USS_CashFlows["CPI Index"]
-EXtraflows <- USS_CashFlows["Expected cash flows (£bn) in relation to benefits projected to be accrued in 2020/21"]
+EXtraflows <- USS_CashFlows["Expected cash flows (?bn) in relation to benefits projected to be accrued in 2020/21"]
 RealSpot <- USS_CashFlows["Spot Real Yields"]
 
 periods <- nrow(USS_CashFlows) #periods in model
@@ -69,7 +69,7 @@ mew <- 0.045
 # st deviation of log returns on risky assets
 sigma <- 0.175
 
-### Figure 6 ###
+### Figure 5 ###
 
 rpiadj <- 0.5 # adjustment to convert cpi to rpi
 
@@ -83,6 +83,20 @@ mew <- 0.074
 # st deviation of log returns on risky assets
 sigma <- 0.205
 
+### Figure 6 ###
+
+rpiadj <- 0.5 # adjustment to convert cpi to rpi
+
+# Initial assets 
+#Update from 31 July 2021 file:///C:/Users/ew18103/Downloads/Monitoring%20Dashboard%2031%20Jul%202021.pdf
+Cashflows[1,1]<- -80.6
+
+# Average arithmetic rate of return on risky asssets (equities)
+mew <- 0.071
+
+# st deviation of log returns on risky assets
+sigma <- 0.135
+
 ### Figure 7 ###
 
 rpiadj <- 0.5 # adjustment to convert cpi to rpi
@@ -92,10 +106,10 @@ rpiadj <- 0.5 # adjustment to convert cpi to rpi
 Cashflows[1,1]<- -80.6
 
 # Average arithmetic rate of return on risky asssets (equities)
-mew <- 0.0735
+mew <- 0.07
 
 # st deviation of log returns on risky assets
-sigma <- 0.1381
+sigma <- 0.17
 
 ####################################################################
 ##  Base Case using Real Rates as of March 2020
