@@ -4,10 +4,6 @@
 # Last updated: 19/10/21
 ###############################################################################################################
 
-### Note ###
-# (1) This code is converted from Matlab code by David Miles and James Sefton 2021 (M&S)
-# (2) For Figure 5, go to the last section.
-
 ### Directories and packages ###
 
 library(matconv)
@@ -212,45 +208,3 @@ for (i in 2:length(alpha_range)){
   lines(seq(2020,2102,by=1), FundsDistrib_all[[i]][,1], type="l", col=col_alpha[i])
 }
 legend("topleft", legend=paste(alpha_range*100, "%", sep=""), col=col_alpha, bty = "n", ncol=2, lty=1)
-
-#save(FundsDistrib_all, file="USSBriefs2021_Fig2.RData")
-#save(FundsDistrib_all, file="USSBriefs2021_Fig3and4.RData")
-#save(FundsDistrib_all, file="USSBriefs2021_Fig6.RData")
-#save(FundsDistrib_all, file="USSBriefs2021_Fig7.RData")
-
-####################################################################
-##  Figure 5
-####################################################################
-
-### load data ###
-
-#USS
-USS_updated<-read_excel("USS_ForwardRates_from_gilt_yeild_CPI_basis.xlsx", sheet="USS_Data_nominal")
-
-#Bank of England 
-# Note that BoE only gives prediction 40 years in the future
-BoE_CPI <- read_excel("NominalForwardRate_BoE.xlsx", sheet="Sheet2")
-
-### Nominal Forward rate ###
-
-# M&S 
-NominalForwardRate<- (USS_updated["CPI"]*100)+RealForwardRate[-1]  
-
-# USS
-NominalForwardRate_USS<-USS_updated["Gilt yield"]*100
-
-# Bank of England
-NominalForwardRate_BoE<-as.data.frame(BoE_CPI)
-
-### Figure ###
-
-plot(NominalForwardRate_BoE[,1],NominalForwardRate_BoE[,2], type="l", ylim=c(-1,3), lty=3,
-     ylab="forward nominal rate", xlab="years")
-lines(NominalForwardRate_BoE[,1],NominalForwardRate_BoE[,3], type="l")
-lines(NominalForwardRate[1:40,], type="l", col="blue") 
-lines(NominalForwardRate_USS[1:40,], type="l", col="red")
-abline(h=0)
-
-legend(x = "topleft", legend = c("BoE March 2020", "BoE March 2021", "M&S", "USS"),  # Legend texts
-       lty = c(3, 1, 1, 1),           # Line types
-       col = c("black", "black", "blue", "red"), horiz = T,  bty = "n")
